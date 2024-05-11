@@ -7,6 +7,7 @@ GERMAN = "german"
 EXIT = "exit"
 
 VERBS_FILENAME = "verbs.csv"
+MOST_COMMON_FILENAME = "most_common.csv"
 
 
 def learn(filename):
@@ -21,7 +22,7 @@ def learn(filename):
         while True:
             i = i + 1
             data_idx = random.randint(0, tot_data)
-            guess = input(f"[{i}] Meaning of '{data[data_idx][GERMAN]}': ")
+            guess = input(f"[{i}] Meaning of '{data[data_idx][GERMAN]}': ").casefold()
 
             if guess == EXIT:
                 print("Tschüss")
@@ -33,7 +34,7 @@ def learn(filename):
 
 
 def main():
-    options = ["Top 100 verbs", "Top 100 words"]
+    options = ["Top 100 verbs", "Most common words"]
 
     terminal_menu = TerminalMenu(options)
     menu_idx = terminal_menu.show()
@@ -41,7 +42,7 @@ def main():
     if menu_idx == 0:
         learn(VERBS_FILENAME)
     elif menu_idx == 1:
-        print("Soon")
+        learn(MOST_COMMON_FILENAME)
 
 
 if __name__ == "__main__":
